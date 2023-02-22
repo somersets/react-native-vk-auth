@@ -36,22 +36,16 @@ internal object SuperAppKitInitUtils {
     val logo = resolveLogoUri(reactAppContext, Uri.parse(vkid.icon.getString("uri")))
 
     val builder = SuperappKitConfig.Builder(reactAppContext.applicationContext as Application)
-      .setAuthModelData(
-        VkClientAuthLibConfig.AuthModelData(
-          clientSecret = app.credentials.clientSecret,
-          libverifyInfo = VkClientLibverifyInfo.disabled(),
-          ignoreSuccessAuth = true
-        )
-      )
+      .setAuthModelData(app.credentials.clientSecret)
       .setAuthUiManagerData(VkClientUiInfo(icon48 = logo, icon56 = logo, appName = vkid.appName))
-      .sslPinningEnabled(false)
       .setLegalInfoLinks(
         serviceUserAgreement = vkid.links.serviceUserAgreement,
         servicePrivacyPolicy = vkid.links.servicePrivacyPolicy,
         serviceSupport = vkid.links.serviceSupport
       )
-      .setSilentTokenExchanger(JSSilentTokenExchanger(reactAppContext))
       .setApplicationInfo(appInfo)
+      .setSilentTokenExchanger(JSSilentTokenExchanger(reactAppContext))
+      .sslPinningEnabled(false)
       .build()
 
     SuperappKit.init(builder)
