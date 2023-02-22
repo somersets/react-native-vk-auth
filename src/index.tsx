@@ -24,7 +24,7 @@ interface VkAuthModule extends NativeModule {
   initialize: (app: VK.App, vkid: VKID) => void;
   openURL: (url: string) => void;
 
-  accessTokenChangedSuccess: (token: string, userId: bigint) => void;
+  accessTokenChangedSuccess: () => void;
   accessTokenChangedFailed: (error: Error) => void;
 }
 
@@ -156,10 +156,7 @@ export class VKID {
     result: VKID.TokenExchangeResult<VKID.AccessToken, Error>
   ) {
     if (result.ok) {
-      VkAuth.accessTokenChangedSuccess(
-        result.accessToken.token.value,
-        result.accessToken.userID.value
-      );
+      VkAuth.accessTokenChangedSuccess();
     } else {
       VkAuth.accessTokenChangedFailed(result.error);
     }

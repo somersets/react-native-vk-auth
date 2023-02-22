@@ -32,8 +32,8 @@ class VkAuthModule(reactContext: ReactApplicationContext,
   }
 
   @ReactMethod
-  fun accessTokenChangedSuccess(accessToken: String, userId: Double) {
-    authDelegate.accessTokenChangedSuccess(accessToken, userId)
+  fun accessTokenChangedSuccess() {
+    authDelegate.accessTokenChangedSuccess()
   }
 
   @ReactMethod

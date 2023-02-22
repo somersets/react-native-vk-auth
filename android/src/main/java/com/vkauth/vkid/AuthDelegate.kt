@@ -8,6 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.vk.api.sdk.VKApiCallback
 import com.vk.auth.main.VkClientAuthCallback
 import com.vk.auth.main.VkClientAuthLib
+import com.vk.auth.main.VkSilentTokenExchanger
 import com.vk.auth.ui.fastlogin.VkFastLoginBottomSheetFragment
 import com.vk.dto.common.id.UserId
 import com.vk.superapp.api.dto.account.ProfileShortInfo
@@ -54,13 +55,7 @@ class AuthDelegate(
       }
   }
 
-  fun accessTokenChangedSuccess(accessToken: String, userId: Double) {
-    VkClientAuthLib.saveAccessToken(
-      accessToken = accessToken,
-      userId = UserId(userId.toLong()),
-      secret = null
-    )
-
+  fun accessTokenChangedSuccess() {
     val userSessionJson = UserSession.Authorized.toMap()
     jsCallbackSender.sendCallback(context, ON_AUTH_EVENT, userSessionJson)
 
