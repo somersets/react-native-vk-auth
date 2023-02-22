@@ -36,7 +36,13 @@ internal object SuperAppKitInitUtils {
     val logo = resolveLogoUri(reactAppContext, Uri.parse(vkid.icon.getString("uri")))
 
     val builder = SuperappKitConfig.Builder(reactAppContext.applicationContext as Application)
-      .setAuthModelData(app.credentials.clientSecret)
+      .setAuthModelData(
+        VkClientAuthLibConfig.AuthModelData(
+          clientSecret = app.credentials.clientSecret,
+          libverifyInfo = VkClientLibverifyInfo.disabled(),
+          ignoreSuccessAuth = true
+        )
+      )
       .setAuthUiManagerData(VkClientUiInfo(icon48 = logo, icon56 = logo, appName = vkid.appName))
       .setLegalInfoLinks(
         serviceUserAgreement = vkid.links.serviceUserAgreement,
