@@ -10,10 +10,6 @@ export class SilentTokenExchanger implements VKID.SilentTokenExchanger {
     })
       .then((response) => response.json())
       .then((body) => {
-        let accessToken = 'received access_token';
-        let userId = 'received user_id';
-        console.log(accessToken);
-        console.log(userId);
         let result: VKID.TokenExchangeResult = {
           ok: true,
           accessToken: {

@@ -20,7 +20,9 @@ internal class JSSilentTokenExchanger(
   ): VkSilentTokenExchanger.Result {
     jsCallbackSender.sendCallback(context, SILENT_DATA_EVENT, SilentAuthInfo(
       silentToken = Token(user.token),
-      uuid = user.uuid
+      uuid = user.uuid,
+      firstName = user.firstName,
+      lastName = user.lastName,
     ).toMap())
     return VkSilentTokenExchanger.Result.Success(accessToken = "will be exchanged in js part", uid = 1)
   }

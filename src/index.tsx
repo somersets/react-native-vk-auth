@@ -186,6 +186,8 @@ export namespace VKID {
   export interface SilentToken {
     token: Token;
     uuid: string;
+    firstName: string;
+    lastName: string;
   }
 
   export interface SilentTokenExchanger {
