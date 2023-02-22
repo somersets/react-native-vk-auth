@@ -133,7 +133,7 @@ repositories {
 }
 
 def kotlin_version = getExtOrDefault('kotlinVersion')
-def vkSdkVersion = "0.103-24411"
+def vkSdkVersion = "0.104-24412"
 
 dependencies {
     //noinspection GradleDynamicVersion
