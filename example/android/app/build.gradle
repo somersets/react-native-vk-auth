@@ -148,10 +148,18 @@ android {
     }
 }
 
+android.defaultConfig.manifestPlaceholders = [
+  'VkExternalAuthRedirectScheme' : 'vk' + '51561139',
+  'VkExternalAuthRedirectHost' : 'vk.com',
+]
+
+def vkSdkVersion = "0.103-24411"
+
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
-
+    implementation("com.vk:oauth-vk:${vkSdkVersion}")
+    implementation("com.vk:vksdk-pub:${vkSdkVersion}")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.0.0")
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")

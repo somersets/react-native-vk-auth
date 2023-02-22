@@ -3,8 +3,8 @@ buildscript {
   def kotlin_version = rootProject.ext.has('kotlinVersion') ? rootProject.ext.get('kotlinVersion') : project.properties['VkAuth_kotlinVersion']
 
   repositories {
-      google()
-      mavenCentral()
+    google()
+    mavenCentral()
   }
 
   dependencies {
@@ -32,6 +32,7 @@ def getExtOrDefault(name) {
 def getExtOrIntegerDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties['VkAuth_' + name]).toInteger()
 }
+
 
 android {
   compileSdkVersion getExtOrIntegerDefault('compileSdkVersion')
@@ -61,6 +62,9 @@ android {
 repositories {
   mavenCentral()
   google()
+  maven {
+    url = "https://artifactory-external.vkpartner.ru/artifactory/superappkit-maven-public/"
+  }
 
   def found = false
   def defaultDir = null
@@ -129,10 +133,15 @@ repositories {
 }
 
 def kotlin_version = getExtOrDefault('kotlinVersion')
+def vkSdkVersion = "0.103-24411"
 
 dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
+  implementation "com.vk:oauth-vk:${vkSdkVersion}"
+  implementation "com.vk:vksdk-pub:${vkSdkVersion}"
+  implementation "androidx.appcompat:appcompat:1.6.1"
+
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 // From node_modules
 }

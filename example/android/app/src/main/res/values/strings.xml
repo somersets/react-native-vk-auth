@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">VkAuthExample</string>
+    <integer name="com_vk_sdk_AppId">51561139</integer>
+    <string name="vk_client_secret" translatable="false">sOFnJD6DlOsUnJcR5N97</string>
+    <string name="vk_external_oauth_redirect_url" translatable="false">vk<com_vk_sdk_AppId />://vk.com</string>
+    <string name="vk_account_manager_id" translatable="false">com.vkauthexample.account</string>
 </resources>

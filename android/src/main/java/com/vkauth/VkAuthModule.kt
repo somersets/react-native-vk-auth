@@ -1,25 +1,58 @@
 package com.vkauth
 
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
+import com.facebook.react.bridge.*
+import com.vkauth.vkid.AuthDelegate
+import com.vkauth.vkid.InitDelegate
+import com.vkauth.vkid.jsinput.App
+import com.vkauth.vkid.jsinput.VKID
 
-class VkAuthModule(reactContext: ReactApplicationContext) :
+class VkAuthModule(reactContext: ReactApplicationContext,
+                   private val initDelegate: InitDelegate,
+                   private val authDelegate: AuthDelegate
+) :
   ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
-    return NAME
+    return "VkAuth"
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
-  fun multiply(a: Double, b: Double, promise: Promise) {
-    promise.resolve(a * b)
+  fun initialize(app: ReadableMap, vkid: ReadableMap) {
+    initDelegate.initialize(App.fromMap(app), VKID.fromMap(vkid))
   }
 
-  companion object {
-    const val NAME = "VkAuth"
+  @ReactMethod
+  fun startAuth() {
+    authDelegate.startAuth()
+  }
+
+  @ReactMethod
+  fun closeAuth() {
+    authDelegate.closeAuth()
+  }
+
+  @ReactMethod
+  fun accessTokenChangedSuccess(accessToken: String, userId: Double) {
+    authDelegate.accessTokenChangedSuccess(accessToken, userId)
+  }
+
+  @ReactMethod
+  fun accessTokenChangedFailed(error: ReadableMap) {
+    authDelegate.accessTokenChangedFailed()
+  }
+
+  @ReactMethod
+  fun logout() {
+    authDelegate.logout()
+  }
+
+  @ReactMethod
+  fun getUserSessions(promise: Promise) {
+    authDelegate.getUserSessions(promise)
+  }
+
+  @ReactMethod
+  fun getUserProfile(promise: Promise) {
+    authDelegate.getUserProfile(promise)
   }
 }
