@@ -119,6 +119,7 @@ export class VKID {
   }
 
   userSessions(): Promise<Array<VKID.Session.UserSession>> {
+    // @ts-ignore
     let promise: Promise<Array<UserSessionInternal.UserSession>> =
       VkAuth.getUserSessions();
     return promise.then((sessions) => {
@@ -318,6 +319,7 @@ export namespace VKOneTapButtonSpace {
 
 export class VKOneTapButton extends React.Component<VKOneTapButtonSpace.Props> {
   render() {
+    // @ts-ignore
     return <VKOneTapButtonSpace.nativeView {...this.props} />;
   }
 }
