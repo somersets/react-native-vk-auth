@@ -3,7 +3,7 @@ import OSLog
 
 @_implementationOnly import VKSDK
 
-extension SuperappKit {
+extension VkAuth {
     func send(event: Event) {
         self.sendEvent(withName: event.name, body: event.body)
         os_log("Sent react event", type: .info, event.description)

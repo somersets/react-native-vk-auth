@@ -2,7 +2,7 @@
 #import <React/RCTViewManager.h>
 #import <React/RCTEventEmitter.h>
 
-@interface RCT_EXTERN_MODULE(SuperappKit, NSObject)
+@interface RCT_EXTERN_MODULE(VkAuth, NSObject)
 
 #pragma mark - SDK
 

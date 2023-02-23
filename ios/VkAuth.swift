@@ -3,14 +3,14 @@ import OSLog
 
 @_implementationOnly import VKSDK
 
-@objc(SuperappKit)
-final class SuperappKit: RCTEventEmitter {
+@objc(VkAuth)
+final class VkAuth: RCTEventEmitter {
     private static var _sharedSDK: VKSDK.VK.Type2<App, VKID>? // DO NOT USE THIS DIRECTLY
-    fileprivate static var _sharedSuperappKit: SuperappKit?
-    
+    fileprivate static var _sharedSuperappKit: VkAuth?
+
     fileprivate static var sharedSDK: VKSDK.VK.Type2<App, VKID> {
         guard let _shared = Self._sharedSDK else {
-            fatalError("VKSDK is not initialized. Call initialize(_:vkid:) method before using SuperappKit.")
+            fatalError("VKSDK is not initialized. Call initialize(_:vkid:) method before using VkAuth.")
         }
 
         return _shared
@@ -105,7 +105,7 @@ final class SuperappKit: RCTEventEmitter {
     }
 }
 
-extension SuperappKit: TokenExchanging {
+extension VkAuth: TokenExchanging {
     func exchange(silentToken: VKSDK.VKID.SilentToken, completion: @escaping (Result<VKSDK.VKID.AccessToken, Error>) -> Void) {
         self.activeAuthCompletion = completion
         self.send(event: .onSilentDataReceive(silentToken: silentToken))
@@ -130,7 +130,7 @@ extension SuperappKit: TokenExchanging {
     }
 }
 
-extension SuperappKit: VKIDFlowDelegate {
+extension VkAuth: VKIDFlowDelegate {
     func vkid(_ vkid: VKSDK.VKID.Module, didCompleteAuthWith result: Result<VKSDK.VKID.UserSession, Error>) {
         do {
             self.send(event: .onAuth(userSession: try result.get()))
@@ -143,18 +143,18 @@ extension SuperappKit: VKIDFlowDelegate {
 @objc(RTCVkOneTapButton)
 final class OneTapButtonManager: RCTViewManager {
     override func view() -> UIView! {
-        guard let sharedSuperappKit = SuperappKit._sharedSuperappKit else {
-            fatalError("SuperappKit is not initialized. Call initialize(_:vkid:) method before using SuperappKit.")
+        guard let sharedSuperappKit = VkAuth._sharedSuperappKit else {
+            fatalError("VkAuth is not initialized. Call initialize(_:vkid:) method before using VkAuth.")
             return UIView()
         }
         var authPresenter: VKSDK.UIKitPresenter = .newUIWindow
         if let root = UIApplication.shared.keyWindow?.rootViewController {
             authPresenter = .uiViewController(root)
         }
-        
+
         let flow = VKID.AuthFlow.exchanging(tokenExchanger: .custom(weak: sharedSuperappKit))
         let authController = VKID.AuthController(flow: flow, delegate: sharedSuperappKit)
-        
+
         let button = VKID.OneTapButton(
             mode: .default,
             controllerConfiguration: .authController(
@@ -162,17 +162,17 @@ final class OneTapButtonManager: RCTViewManager {
                 presenter: authPresenter
             )
         )
-        
-        guard let buttonView = try? SuperappKit.sharedSDK.vkid.ui(for: button).uiView() else {
+
+        guard let buttonView = try? VkAuth.sharedSDK.vkid.ui(for: button).uiView() else {
             fatalError("OneTapButton configuration problem")
             return UIView()
         }
-        
+
         return buttonView
     }
 }
 
-extension SuperappKit {
+extension VkAuth {
     @objc(supportedEvents)
     override func supportedEvents() -> [String] {
         ["onLogout", "onAuth", "onSilentDataReceive"]
