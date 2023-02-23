@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* VkAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* VkAuth.m */; };
-		F4FF95D7245B92E800C19C63 /*  VkAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /*  VkAuth.swift */; };
+		5185357329A78C4B00197F67 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5185357229A78C4B00197F67 /* Event.swift */; };
+		5185357929A78D1700197F67 /* RCTDomain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5185357829A78D1700197F67 /* RCTDomain.swift */; };
+		F4FF95D7245B92E800C19C63 /* VkAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* VkAuth.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libVkAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVkAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5185357229A78C4B00197F67 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		5185357829A78D1700197F67 /* RCTDomain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCTDomain.swift; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* VkAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VkAuth.m; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* VkAuth-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VkAuth-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* VkAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VkAuth.swift; sourceTree = "<group>"; };
@@ -52,6 +55,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				5185357829A78D1700197F67 /* RCTDomain.swift */,
+				5185357229A78C4B00197F67 /* Event.swift */,
 				F4FF95D6245B92E800C19C63 /* VkAuth.swift */,
 				B3E7B5891CC2AC0600A0062D /* VkAuth.m */,
 				F4FF95D5245B92E700C19C63 /* VkAuth-Bridging-Header.h */,
@@ -66,6 +71,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "VkAuth" */;
 			buildPhases = (
+				EF0329E3550686ECA9D43A45 /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -111,13 +117,39 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		EF0329E3550686ECA9D43A45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-VkAuth-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5185357929A78D1700197F67 /* RCTDomain.swift in Sources */,
+				5185357329A78C4B00197F67 /* Event.swift in Sources */,
 				F4FF95D7245B92E800C19C63 /* VkAuth.swift in Sources */,
-				B3E7B58A1CC2AC0600A0062D /* VkAuth.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
