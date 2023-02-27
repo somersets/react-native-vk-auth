@@ -116,7 +116,7 @@ extension VkAuth: TokenExchanging {
         let accessToken = VKID.AccessToken(.init(token), userID: .init(userId.uint64Value))
         self.activeAuthCompletion?(.success(accessToken))
         self.activeAuthCompletion = nil
-
+        
         os_log("Token exchange succeeded", type: .info)
     }
 
