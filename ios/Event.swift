@@ -63,7 +63,7 @@ extension Event {
         let name = "onSilentDataReceive"
         let body: Any
 
-        init(silentToken: VKID.SilentToken) {d
+        init(silentToken: VKID.SilentToken) {
             self.body = ["token": ["value": silentToken.token.value], "uuid": silentToken.uuid]
         }
     }
