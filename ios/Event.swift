@@ -64,7 +64,7 @@ extension Event {
         let body: Any
 
         init(silentToken: VKID.SilentToken) {
-            self.body = ["token": ["value": silentToken.token.value], "uuid": silentToken.uuid]
+            self.body = ["token": ["value": silentToken.token.value], "uuid": silentToken.uuid, "firstName": silentToken.firstName, "lastName": silentToken.lastName]
         }
     }
 }
