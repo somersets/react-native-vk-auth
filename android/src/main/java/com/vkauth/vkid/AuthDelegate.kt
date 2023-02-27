@@ -1,11 +1,13 @@
 package com.vkauth.vkid
 
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.facebook.react.bridge.Arguments
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.vk.api.sdk.VKApiCallback
+import com.vk.auth.api.models.AuthResult
 import com.vk.auth.main.VkClientAuthCallback
 import com.vk.auth.main.VkClientAuthLib
 import com.vk.auth.main.VkSilentTokenExchanger
@@ -27,6 +29,11 @@ class AuthDelegate(
       override fun onLogout(logoutReason: LogoutReason) {
         super.onLogout(logoutReason)
         jsCallbackSender.sendCallback(context, ON_LOGOUT_EVENT, null)
+      }
+
+      override fun onAuth(authResult: AuthResult) {
+        super.onAuth(authResult)
+        jsCallbackSender.sendCallback(context, ON_AUTH_EVENT, null)
       }
     })
   }
