@@ -30,11 +30,6 @@ class AuthDelegate(
         super.onLogout(logoutReason)
         jsCallbackSender.sendCallback(context, ON_LOGOUT_EVENT, null)
       }
-
-      override fun onAuth(authResult: AuthResult) {
-        super.onAuth(authResult)
-        jsCallbackSender.sendCallback(context, ON_AUTH_EVENT, null)
-      }
     })
   }
 
@@ -62,7 +57,7 @@ class AuthDelegate(
       }
   }
 
-  fun accessTokenChangedSuccess() {
+  fun accessTokenChangedSuccess(token: String, userId: Int) {
     val userSessionJson = UserSession.Authorized.toMap()
     jsCallbackSender.sendCallback(context, ON_AUTH_EVENT, userSessionJson)
 
