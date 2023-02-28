@@ -49,7 +49,7 @@
   },
   "homepage": "https://github.com/somersets/react-native-vk-auth#readme",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "access": "public"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",
