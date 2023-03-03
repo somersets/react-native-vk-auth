@@ -10,12 +10,7 @@ npm install react-native-vk-auth
 
 ## Usage
 
-```js
-import { multiply } from 'react-native-vk-auth';
-
-// ...
-
-const result = await multiply(3, 7);
+under development
 ```
 
 ## Contributing
