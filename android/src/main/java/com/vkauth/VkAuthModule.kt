@@ -33,12 +33,12 @@ class VkAuthModule(reactContext: ReactApplicationContext,
 
   // to ignore react warning
   @ReactMethod
-  public void addListener(String eventName) {
+  fun addListener(String eventName) {
 
   }
 
   @ReactMethod
-  public void removeAllListeners(Integer count) {
+  fun removeAllListeners(Integer count) {
 
   }
 
