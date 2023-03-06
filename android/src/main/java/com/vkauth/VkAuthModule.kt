@@ -31,6 +31,17 @@ class VkAuthModule(reactContext: ReactApplicationContext,
     authDelegate.closeAuth()
   }
 
+  // to ignore react warning
+  @ReactMethod
+  public void addListener(String eventName) {
+
+  }
+
+  @ReactMethod
+  public void removeAllListeners(Integer count) {
+
+  }
+
   @ReactMethod
   fun accessTokenChangedSuccess(token: String, userId: Int) {
     authDelegate.accessTokenChangedSuccess(token, userId)
