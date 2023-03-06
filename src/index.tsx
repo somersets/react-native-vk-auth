@@ -114,6 +114,10 @@ export class VKID {
     VkAuth.closeAuth();
   }
 
+  async getUserProfile(): Promise<VKID.UserProfile> {
+    return await VkAuth.getUserProfile();
+  }
+
   logout() {
     VkAuth.logout();
   }
