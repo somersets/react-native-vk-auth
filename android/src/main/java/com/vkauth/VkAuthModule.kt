@@ -6,9 +6,10 @@ import com.vkauth.vkid.InitDelegate
 import com.vkauth.vkid.jsinput.App
 import com.vkauth.vkid.jsinput.VKID
 
-class VkAuthModule(reactContext: ReactApplicationContext,
-                   private val initDelegate: InitDelegate,
-                   private val authDelegate: AuthDelegate
+class VkAuthModule(
+  reactContext: ReactApplicationContext,
+  private val initDelegate: InitDelegate,
+  private val authDelegate: AuthDelegate
 ) :
   ReactContextBaseJavaModule(reactContext) {
 
@@ -29,6 +30,19 @@ class VkAuthModule(reactContext: ReactApplicationContext,
   @ReactMethod
   fun closeAuth() {
     authDelegate.closeAuth()
+  }
+
+  // to ignore react warning
+  @ReactMethod
+  fun addListener(eventName: String) {
+  }
+
+  @ReactMethod
+  fun removeAllListeners() {
+  }
+
+  @ReactMethod
+  fun removeListeners(type: Int?) {
   }
 
   @ReactMethod
